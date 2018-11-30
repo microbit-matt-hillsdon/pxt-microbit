@@ -1,6 +1,6 @@
 # On Event
 
-Raise an event in the event bus.
+Registers an event handler.
 
 ```sig
 control.onEvent(control.eventSourceId(EventBusSource.MICROBIT_ID_BUTTON_A), control.eventValueId(EventBusValue.MICROBIT_EVT_ANY), () => { });
