@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set -euxo pipefail
 
 # Hacky CI to build this in CF Pages
