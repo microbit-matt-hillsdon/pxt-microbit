@@ -15,4 +15,14 @@ npm install -g pxt
 )
 
 npm link ../pxt
+
+# Add ml extension
+cd libs
+git clone -b v0.1.23 git@github.com:microbit-foundation/pxt-ml-extension-poc.git
+cd pxt-ml-extension-poc
+node -e "const f = 'pxt.json'; const data = fs.readFileSync(f, 'utf8'); fs.writeFileSync(f, data.replace('*', 'file:../core'))"
+pxt install
+pxt build
+cd ../..
+
 pxt staticpkg
