@@ -244,7 +244,7 @@
     "partsAspectRatio": 0.69,
     "messageSimulators": {
       "machineLearningPoc": {
-        "url": "http://localhost:3000/simulator/?parentOrigin=$PARENT_ORIGIN$",
+        "url": "https://makecode-ml-editor-extension-poc.pages.dev/simulator/?parentOrigin=$PARENT_ORIGIN$",
         "localHostUrl": "http://localhost:3000/simulator/?parentOrigin=$PARENT_ORIGIN$",
         "aspectRatio": 4,
         "permanent": true
