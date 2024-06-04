@@ -17,7 +17,7 @@ npm install -g pxt
 npm link ../pxt
 
 # Add ml extension
-node -e "const f = 'pxtarget.json'; const data = fs.readFileSync(f, 'utf8'); fs.writeFileSync(f, data.replace('\"libs/core\",', '\"libs/core\",\"libs/machine-learning-poc\",\"libs/ml-runner-poc\"'))"
+node -e "const f = 'pxtarget.json'; const data = fs.readFileSync(f, 'utf8'); fs.writeFileSync(f, data.replace('\"libs/core\",', '\"libs/core\",\"libs/machine-learning-poc\",\"libs/ml-runner-poc\",'))"
 cd libs
 git clone -b v0.3.0 git@github.com:microbit-foundation/pxt-ml-extension-poc.git
 mv pxt-ml-extension-poc machine-learning-poc
