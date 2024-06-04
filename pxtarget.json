@@ -7,7 +7,6 @@
   "corepkg": "core",
   "bundleddirs": [
     "libs/core",
-    "libs/machine-learning-poc",
     "libs/radio",
     "libs/devices",
     "libs/bluetooth",
