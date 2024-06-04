@@ -26,7 +26,7 @@ node -e "const f = 'pxt.json'; const data = fs.readFileSync(f, 'utf8'); fs.write
 pxt install
 cd ..
 git clone -b v0.3.2 git@github.com:microbit-foundation/pxt-ml-runner-poc.git
-mv pxt-ml-extension-poc ml-runner-poc
+mv pxt-ml-runner-poc ml-runner-poc
 cd ml-runner-poc
 node -e "const f = 'pxt.json'; const data = fs.readFileSync(f, 'utf8'); fs.writeFileSync(f, data.replace('*', 'file:../core'))"
 pxt install
