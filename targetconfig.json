@@ -2,6 +2,7 @@
     "packages": {
         "approvedRepoLib": {
             "microbit-foundation/pxt-ml-extension-poc": {},
+            "microbit-foundation/pxt-ml-runner-poc": {},
             "microsoft/pxt-neopixel": {
                 "tags": [ "Lights and Display" ],
                 "preferred": true
