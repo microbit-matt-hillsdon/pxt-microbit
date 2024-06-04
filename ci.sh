@@ -28,7 +28,7 @@ cd ..
 git clone -b v0.3.0 git@github.com:microbit-foundation/pxt-ml-extension-poc.git
 mv pxt-ml-extension-poc machine-learning-poc
 cd machine-learning-poc
-node -e "const f = 'pxt.json'; const data = fs.readFileSync(f, 'utf8'); fs.writeFileSync(f, data.replace('*', 'file:../core').replace('github:microbit-foundation/pxt-ml-runner-poc#v0.3.2', 'file:../ml-runner-poc').replace('Machine Learning POC', 'machine-learning-poc'))"
+node -e "const f = 'pxt.json'; const data = fs.readFileSync(f, 'utf8'); const output = JSON.parse(data); output.name = 'machine-learning-poc'; output.dependencies.core = 'file:../core'; output.dependencies[\"ml-runner-poc\"] = 'file:../ml-runner-poc'; output.installedVersion = 'github:microbit-foundation/pxt-ml-extension-poc#v0.3.0'; fs.writeFileSync(f, JSON.stringify(output))"
 pxt install
 cd ../..
 
