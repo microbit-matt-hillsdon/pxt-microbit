@@ -1,6 +1,8 @@
 {
     "packages": {
         "approvedRepoLib": {
+            "machine-learning-poc": {},
+            "ml-runner-poc": {},
             "microbit-foundation/pxt-ml-extension-poc": {},
             "microbit-foundation/pxt-ml-runner-poc": {},
             "microsoft/pxt-neopixel": {
