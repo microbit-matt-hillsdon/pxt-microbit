@@ -17,8 +17,7 @@
     "libs/flashlog",
     "libs/datalogger",
     "libs/color",
-    "libs/audio-recording",
-    "libs/pxt-ml-extension-poc"
+    "libs/audio-recording"
   ],
   "cloud": {
     "workspace": false,
