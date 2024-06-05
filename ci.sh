@@ -16,3 +16,4 @@ npm install -g pxt
 
 npm link ../pxt
 pxt staticpkg
+cp 404.html built/packaged/
