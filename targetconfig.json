@@ -1,6 +1,7 @@
 {
     "packages": {
         "approvedRepoLib": {
+            "microbit-foundation/pxt-ml-extension-poc": {},
             "microsoft/pxt-neopixel": {
                 "tags": [ "Lights and Display" ],
                 "preferred": true
@@ -465,6 +466,7 @@
             "softsmyth/lectrify-b4k": { "tags": [ "Robotics" ] }
         },
         "approvedEditorExtensionUrls": [
+            "https://microbit-foundation.github.io/makecode-ml-editor-extension-poc/",
             "https://microsoft.github.io/ml4f/",
             "https://microsoft.github.io/jacdac-docs/tools/makecode-editor-extension"
         ],
