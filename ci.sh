@@ -6,7 +6,7 @@ set -euxo pipefail
 npm install -g pxt
 (
   cd ../
-  git clone git@github.com:microbit-grace/pxt.git
+  git clone git@github.com:microbit-matt-hillsdon/pxt.git
   cd pxt
   git checkout ml-tool
   npm install
