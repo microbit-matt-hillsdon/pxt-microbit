@@ -261,7 +261,7 @@
                 "permanent": true
             },
             "microbitML": {
-              "url": "https://microbit-robert.github.io/makecode-microbit-ml-simulator/?parentOrigin=$PARENT_ORIGIN$&language=$LANGUAGE$",
+              "url": "https://microbit-foundation.github.io/makecode-microbit-ml-simulator/?parentOrigin=$PARENT_ORIGIN$&language=$LANGUAGE$",
               "localHostUrl": "http://localhost:3000/?parentOrigin=$PARENT_ORIGIN$&language=$LANGUAGE$",
               "aspectRatio": 4,
               "permanent": true
