@@ -598,7 +598,7 @@ Many extensions are available to work with interface kits, add-on hardware, or o
   "cardType": "package"
 }, {
   "name": "MATRIX Micro",
-  "url":"/pkg/pxt-MatrixMicro",
+  "url":"/pkg/matrix-robotics/pxt-MatrixMicro",
   "cardType": "package"
 }, {
   "name": "PTKidsBIT",
@@ -812,6 +812,18 @@ Many extensions are available to work with interface kits, add-on hardware, or o
   "name": "TinkerTanker Stepper Motor",
   "url":"/pkg/Tinkertanker/pxt-stepper-motor",
   "cardType": "package"
+}, {
+  "name": "ALS Robot Keyboard",
+  "url":"/pkg/alsrobot-microbit-makecode-packages/ALSRobotKeyboard",
+  "cardType": "package"
+}, {
+    "name": "Elecfreaks NeZha",
+    "url": "/pkg/elecfreaks/pxt-nezha",
+    "cardType": "package"
+}, {
+    "name": "Elecfreaks NeZha V2",
+    "url": "/pkg/elecfreaks/pxt-nezha2",
+    "cardType": "package"
 }]
 ```
 
@@ -929,6 +941,10 @@ Many extensions are available to work with interface kits, add-on hardware, or o
 
 ```codecard
 [{
+  "name": "Sonification",
+  "url":"/pkg/davidnsousa/sonification",
+  "cardType": "package"
+}, {
   "name": "Kitronik Klef Piano",
   "url":"/pkg/KitronikLtd/pxt-kitronik-klef-piano",
   "cardType": "package"
@@ -1079,13 +1095,5 @@ Many extensions are available to work with interface kits, add-on hardware, or o
   "name": "Proportional Font",
   "url":"/pkg/lwchkg/pxt-proportional-font",
   "cardType": "package"
-}, {
-  "name": "ALS Robot Keyboard",
-  "url":"/pkg/alsrobot-microbit-makecode-packages/ALSRobotKeyboard",
-  "cardType": "package"
-}, {
-    "name": "Elecfreaks NeZha",
-    "url": "/pkg/elecfreaks/pxt-nezha",
-    "cardType": "package"
 }]
 ```

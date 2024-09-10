@@ -4,10 +4,11 @@
     "files": [
         "font12.jres"
     ],
-    "public": true,
+    "public": false,
     "disablesVariants": [
         "mbdal"
     ],
+    "searchOnly": true,
     "dependencies": {
         "core": "file:../core"
     }
