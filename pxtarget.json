@@ -262,10 +262,10 @@
                 "aspectRatio": 1.22,
                 "permanent": true
             },
-            "microbit-ml-v1": {
+            "microbit-foundation/pxt-microbit-ml": {
               "url": "https://microbit-foundation.github.io/makecode-microbit-ml-simulator/?parentOrigin=$PARENT_ORIGIN$&language=$LANGUAGE$",
               "localHostUrl": "http://localhost:3000/?parentOrigin=$PARENT_ORIGIN$&language=$LANGUAGE$",
-              "aspectRatio": 4,
+              "aspectRatio": 3.45,
               "permanent": true
             },
             "arcadeshield": {
