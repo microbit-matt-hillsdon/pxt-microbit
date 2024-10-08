@@ -404,6 +404,13 @@
             "stemhub/pxt-stemhubcity": { "tags": [ "Science" ] },
             "kittenbot/pxt-powerbrick": { "tags": [ "Science" ] },
             "microbit-foundation/pxt-microbit-v2-power": { "tags": [ "Software" ] },
+            "microbit-foundation/pxt-microbit-ml": { 
+                "simx": {
+                    "devUrl": "http://localhost:5173",
+                    "sha": "bb5ea3bc66c62e77acf740800a4117fb29c309f9",
+                    "aspectRatio": 3.45
+                }
+            },
             "kittenbot/pxt-joyfrog": { "tags": [ "Gaming" ] },
             "kittenbot/pxt-sugar": { "tags": [ "Science" ] },
             "kittenbot/pxt-koi": { "tags": [ "Science" ] },
