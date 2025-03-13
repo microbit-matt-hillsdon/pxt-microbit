@@ -1280,6 +1280,7 @@ path.sim-board {
                         let pin = state.edgeConnectorState.pins[index];
                         let svgpin = this.pins[index];
                         if (pin.mode & PinFlags.Input) {
+                            if (!(pin.mode & PinFlags.Analog)) return;
                             let cursor = svg.cursorPoint(pt, this.element, ev);
                             let v = (400 - cursor.y) / 40 * 1023
                             pin.value = Math.max(0, Math.min(1023, Math.floor(v)));
@@ -1290,12 +1291,17 @@ path.sim-board {
                     ev => {
                         let state = this.board;
                         let pin = state.edgeConnectorState.pins[index];
+
                         let svgpin = this.pins[index];
                         U.addClass(svgpin, "touched");
                         if (pin.mode & PinFlags.Input) {
-                            let cursor = svg.cursorPoint(pt, this.element, ev);
-                            let v = (400 - cursor.y) / 40 * 1023
-                            pin.value = Math.max(0, Math.min(1023, Math.floor(v)));
+                            if ((pin.mode & PinFlags.Analog)) {
+                                let cursor = svg.cursorPoint(pt, this.element, ev);
+                                let v = (400 - cursor.y) / 40 * 1023
+                                pin.value = Math.max(0, Math.min(1023, Math.floor(v)));
+                            } else if (pin.mode & PinFlags.Digital) {
+                                pin.value = pin.value > 0 ? 0 : 1024;
+                            }
                         }
                         this.updatePin(pin, index);
                     },
@@ -1305,7 +1311,9 @@ path.sim-board {
                         let pin = state.edgeConnectorState.pins[index];
                         let svgpin = this.pins[index];
                         U.removeClass(svgpin, "touched");
-                        this.updatePin(pin, index);
+                        if (pin.mode & PinFlags.Analog) {
+                            this.updatePin(pin, index);
+                        } 
                         return false;
                     },
                     // keydown
