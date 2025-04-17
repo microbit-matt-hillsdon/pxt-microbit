@@ -147,14 +147,14 @@ namespace pxsim.visuals {
         .sim-thermometer:focus,
         .sim-light-level-button:focus,
         .sim-button-outer.sim-button-group:focus > .sim-button {
-            outline: 6px solid yellow;
+            outline: 6px solid white;
             outline-offset: 6px;
         }
         .sim-antenna-outer:focus {
-            outline: 6px solid yellow;
+            outline: 6px solid white;
         }
         .sim-pin:focus { 
-            stroke: yellow;
+            stroke: white;
             stroke-width: 5px !important;
         }
         .no-drag, .sim-text, .sim-text-small,
