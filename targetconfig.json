@@ -429,6 +429,7 @@
             "forward-education/pxt-climate-action": { "tags": [ "Science" ] },
             "elecfreaks/pxt-petal": { "tags": [ "Science" ] },
             "kitronikltd/pxt-kitronik-mai-z": { "tags": [ "Robotics" ] },
+            "roborisen/braillebot": { "tags": [ "Robotics" ] },
             "microsoft/pxt-simx-sample": {
                 "simx": {
                     "sha": "7301f5900879b85127482d79bab48f03c25690a8",
@@ -437,7 +438,7 @@
             },
             "microbit-foundation/pxt-microbit-ml": {
                 "simx": {
-                    "sha": "de376b74f38c8f7d805a0d5704205fffd7453da1",
+                    "sha": "6aa7c4dca86f537ad5ece769684886e97626659e",
                     "devUrl": "http://localhost:5173",
                     "aspectRatio": 3.45
                 },
@@ -445,8 +446,15 @@
             },
             "jacdac/pxt-jacdac": {
                 "simx": {
-                    "sha": "0cd760f1d1575b8dcd8ec8abcbb780fc10ec6937",
+                    "sha": "80d8581b59c501e4cdfaf8ec84e00682264dd9f6",
                     "devUrl": "https://jacdac.github.io/jacdac-docs/tools/makecode-sim/"
+                }
+            },
+            "jacdac/pxt-jacdac-test": {
+                "hidden": true,
+                "simx": {
+                    "sha": "1b14cb42f304cc3112839be913c29d56096f2e61",
+                    "devUrl": "https://jacdac.github.io/pxt-jacdac-test/index.html"
                 }
             }
         },
@@ -459,13 +467,15 @@
     "galleries": {
         "Tutorials": "tutorials",
         "Tutorials for the new micro:bit (V2)": "tutorials-v2",
+        "Games": "projects/games",
+        "Make it: code it Examples": "microbit-org/make-it-code-it",
+        "Radio Games": "projects/radio-games",
+        "Data Logging Examples": "microbit-org/data-logging",
         "Live Coding": {
             "url": "live-coding",
             "shuffle": "daily",
             "youTube": true
         },
-        "Games": "projects/games",
-        "Radio Games": "projects/radio-games",
         "Fashion": "projects/fashion",
         "Music": "projects/music",
         "Toys": "projects/toys",
@@ -473,9 +483,12 @@
         "Tools": "projects/tools",
         "Turtle": "projects/turtle",
         "Blocks to JavaScript": "courses/blocks-to-javascript",
+        "First Lessons with MakeCode and the micro:bit": "microbit-org/first-lessons",
+        "CreateAI": "microbit-org/createai",
         "Courses": "courses",
         "Jacdac": "jacdac",
         "MicroCode for the new micro:bit (V2)": "microcode",
+        "Introductory micro:bit Feature Videos": "microbit-org/feature-videos",
         "Behind the MakeCode Hardware": {
             "url": "behind-the-makecode-hardware",
             "youTube": true
@@ -484,6 +497,7 @@
             "url": "science-experiments",
             "youTube": true
         },
+        "Educator Professional Development": "microbit-org/professional-development",
         "Coding for Teachers": {
             "url": "coding-for-teachers",
             "youTube": true
