@@ -41,7 +41,6 @@ function log(msg: string) {
 }
 const logV = /webusbdbg=1/.test(window.location.href) ? log : (msg: string) => { }
 const setBaudRateOnConnection = !/webusbbaud=0/.test(window.location.href)
-const resetOnConnection = !/webusbreset=0/.test(window.location.href)
 
 function murmur3_core(data: Uint8Array) {
     let h0 = 0x2F9BE6CC;
@@ -335,10 +334,6 @@ class DAPWrapper implements pxt.packetio.PacketIOWrapper {
             await this.setBaudRate()
         // only init after setting baud rate, in case we got reset
         await this.cortexM.init()
-        if (resetOnConnection) {
-            log(`reset cortex`)
-            await this.cortexM.reset(true)
-        }
 
         await this.readPageSize()
         // jacdac needs to run to set the xchg address
