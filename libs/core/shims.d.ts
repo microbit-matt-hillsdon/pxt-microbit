@@ -215,7 +215,9 @@ declare namespace input {
      */
     //% help=input/on-button-pressed weight=85 blockGap=16
     //% blockId=device_button_event block="on button|%NAME|pressed"
-    //% parts="buttonpair" shim=input::onButtonPressed
+    //% parts="buttonpair"
+    //% NAME.label="button"
+    //% button.label="button" shim=input::onButtonPressed
     function onButtonPressed(button: Button, body: () => void): void;
 
     /**
@@ -266,7 +268,9 @@ declare namespace input {
     //% block="button|%NAME|is pressed"
     //% blockId=device_get_button2
     //% icon="\uf192" blockGap=8
-    //% parts="buttonpair" shim=input::buttonIsPressed
+    //% parts="buttonpair"
+    //% NAME.label="button"
+    //% button.label="button" shim=input::buttonIsPressed
     function buttonIsPressed(button: Button): boolean;
 
     /**
@@ -651,7 +655,8 @@ declare namespace music {
     //% help=music/set-volume
     //% weight=70
     //% group="Volume"
-    //% blockGap=8 volume.defl=127 shim=music::setVolume
+    //% blockGap=8
+    //% volume.label="volume" volume.defl=127 shim=music::setVolume
     function setVolume(volume?: int32): void;
 
     /**

@@ -17,6 +17,7 @@ namespace music {
 //% weight=70
 //% group="Volume"
 //% blockGap=8
+//% volume.label="volume"
 void setVolume(int volume) {
 #if MICROBIT_CODAL
     uBit.audio.setVolume(max(0, min(255, volume)));

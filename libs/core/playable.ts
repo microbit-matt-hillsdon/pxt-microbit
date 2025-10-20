@@ -118,6 +118,7 @@ namespace music {
     //% duplicateShadowOnDrag
     //% melody.shadow=melody_editor
     //% bpm.min=40 bpm.max=500
+    //% bpm.label="bpm"
     //% bpm.defl=120
     export function stringPlayable(melody: string, bpm: number): Playable {
         return new StringArrayPlayable(music.getMelodyNotes(melody), bpm);

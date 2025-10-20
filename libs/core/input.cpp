@@ -168,6 +168,8 @@ namespace input {
     //% help=input/on-button-pressed weight=85 blockGap=16
     //% blockId=device_button_event block="on button|%NAME|pressed"
     //% parts="buttonpair"
+    //% NAME.label="button"
+    //% button.label="button"
     void onButtonPressed(Button button, Action body) {
         registerWithDal((int)button, MICROBIT_BUTTON_EVT_CLICK, body);
     }
@@ -247,6 +249,8 @@ namespace input {
     //% blockId=device_get_button2
     //% icon="\uf192" blockGap=8
     //% parts="buttonpair"
+    //% NAME.label="button"
+    //% button.label="button"
     bool buttonIsPressed(Button button) {
       if (button == Button::A)
         return uBit.buttonA.isPressed();

@@ -244,6 +244,7 @@ namespace music {
     //% useEnumVal=1
     //% group="Tone"
     //% blockGap=8
+    //% name.label="tone"
     export function noteFrequency(name: Note): number {
         return name;
     }
@@ -259,6 +260,7 @@ namespace music {
     //% blockId=device_beat block="%fraction|beat"
     //% group="Tempo"
     //% blockGap=8
+    //% fraction.label="beat"
     export function beat(fraction?: BeatFraction): number {
         init();
         if (fraction == null) fraction = BeatFraction.Whole;
@@ -306,6 +308,7 @@ namespace music {
     //% help=music/set-tempo weight=38
     //% blockId=device_set_tempo block="set tempo to (bpm)|%value"
     //% bpm.min=40 bpm.max=500
+    //% bpm.label="bpm"
     //% group="Tempo"
     //% weight=99
     export function setTempo(bpm: number): void {
@@ -391,6 +394,7 @@ namespace music {
     //% melody.shadow="melody_editor"
     //% tempo.min=40 tempo.max=500
     //% tempo.defl=120
+    //% tempo.label="tempo"
     //% parts=headphone
     //% group="Melody"
     //% deprecated=1
