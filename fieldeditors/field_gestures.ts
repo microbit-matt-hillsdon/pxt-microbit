@@ -11,7 +11,7 @@ export interface FieldGesturesOptions {
 export class FieldGestures extends pxtblockly.FieldImages {
     public isFieldCustom_ = true;
 
-    constructor(text: string, options: FieldGesturesOptions, validator?: Function) {
+    constructor(text: string, options: FieldGesturesOptions, validator?: any) {
         super(text, options as any, validator);
         this.columns_ = parseInt(options.columns) || 4;
         this.width_ = parseInt(options.width) || 350;
