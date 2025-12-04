@@ -152,7 +152,7 @@ declare namespace basic {
      */
     //% help=basic/show-string
     //% weight=87 blockGap=16
-    //% block="show|string %text"
+    //% block="show string %text"
     //% async
     //% blockId=device_print_message
     //% parts="ledmatrix"
