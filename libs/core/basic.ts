@@ -6,7 +6,7 @@ namespace basic {
      */
     //% help=basic/show-number
     //% weight=96
-    //% blockId=device_show_number block="show number %number" blockGap=8
+    //% blockId=device_show_number block="show|number %number" blockGap=8
     //% async
     //% parts="ledmatrix" interval.defl=150
     export function showNumber(value: number, interval?: number) {
