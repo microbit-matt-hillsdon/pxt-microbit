@@ -1492,7 +1492,6 @@ path.sim-board {
                         let svgpin = this.pins[index];
                         U.addClass(svgpin, "touched");
                         if (pin.mode & PinFlags.Input && !(pin.mode & PinFlags.Touch)) {
-                            console.log("what")
                             let cursor = svg.cursorPoint(pt, this.element, ev);
                             let v = (400 - cursor.y) / 40 * 1023
                             pin.value = Math.max(0, Math.min(1023, Math.floor(v)));
