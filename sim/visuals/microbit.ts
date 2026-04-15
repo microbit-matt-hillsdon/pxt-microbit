@@ -690,20 +690,9 @@ path.sim-board {
                     ev => { },
                     // keydown
                     (ev) => {
-                        let charCode = (typeof ev.which == "number") ? ev.which : ev.keyCode
-                        if (charCode === 40 || charCode === 37) { // Down/Left arrow
-                            ev.preventDefault();
-                            if (state.thermometerState.temperature === tmin) {
-                                return
-                            }
-                            state.thermometerState.temperature--;
-                            this.updateTemperature();
-                        } else if (charCode === 38 || charCode === 39) { // Up/Right arrow
-                            ev.preventDefault();
-                            if (state.thermometerState.temperature === tmax) {
-                                return
-                            }
-                            state.thermometerState.temperature++;
+                        const value = commonKeyHandler(ev, state.thermometerState.temperature, tmin, tmax);
+                        if (value !== undefined) {
+                            state.thermometerState.temperature = value;
                             this.updateTemperature();
                         }
                     })
@@ -755,22 +744,9 @@ path.sim-board {
                     ev => { },
                     // keydown
                     (ev) => {
-                        let charCode = (typeof ev.which == "number") ? ev.which : ev.keyCode
-                        if (charCode === 40 || charCode === 37) { // Down/Left arrow
-                            ev.preventDefault();
-                            const level = state.microphoneState.getLevel()
-                            if (level === tmin) {
-                                return
-                            }
-                            state.microphoneState.setLevel(level - 1);
-                            this.updateMicrophone();
-                        } else if (charCode === 38 || charCode === 39) { // Up/Right arrow
-                            ev.preventDefault();
-                            const level = state.microphoneState.getLevel()
-                            if (level === tmax) {
-                                return
-                            }
-                            state.microphoneState.setLevel(level + 1)
+                        const value = commonKeyHandler(ev, state.microphoneState.getLevel(), tmin, tmax);
+                        if (value !== undefined) {
+                            state.microphoneState.setLevel(value);
                             this.updateMicrophone();
                         }
                     })
@@ -815,18 +791,9 @@ path.sim-board {
                     ev => { },
                     // keydown
                     (ev) => {
-                        let charCode = (typeof ev.which == "number") ? ev.which : ev.keyCode
-                        if (charCode === 40 || charCode === 37) { // Down/Left arrow
-                            ev.preventDefault();
-                            state.compassState.heading--;
-                            if (state.compassState.heading < 0) state.compassState.heading += 360;
-                            if (state.compassState.heading >= 360) state.compassState.heading %= 360;
-                            this.updateHeading();
-                        } else if (charCode === 38 || charCode === 39) { // Up/Right arrow
-                            ev.preventDefault();
-                            state.compassState.heading++;
-                            if (state.compassState.heading < 0) state.compassState.heading += 360;
-                            if (state.compassState.heading >= 360) state.compassState.heading %= 360;
+                        const value = commonKeyHandler(ev, state.compassState.heading, 0, 360);
+                        if (value !== undefined) {
+                            state.compassState.heading = value;
                             this.updateHeading();
                         }
                     }
@@ -878,15 +845,11 @@ path.sim-board {
                     const pos = svg.cursorPoint(pt, this.element, ev);
                     setValue((-138 + (pos.x - ANTENNA_X) / antennaWidth * 100) | 0);
                 };
+
                 const keyboardEventHandler = (ev: KeyboardEvent) => {
-                    const charCode = (typeof ev.which == "number") ? ev.which : ev.keyCode;
-                    const rs = this.board.radioState.datagram.rssi ?? -75;
-                    if (charCode === 40 || charCode === 37) { // Down/Left arrow
-                        ev.preventDefault();
-                        setValue(rs - 1);
-                    } else if (charCode === 38 || charCode === 39) { // Up/Right arrow
-                        ev.preventDefault();
-                        setValue(rs + 1);
+                    const value = commonKeyHandler(ev, this.board.radioState.datagram.rssi, valueMin, valueMax);
+                    if (value !== undefined) {
+                        setValue(value);
                     }
                 };
 
@@ -966,20 +929,9 @@ path.sim-board {
                     ev => { },
                     // keydown
                     (ev) => {
-                        let charCode = (typeof ev.which == "number") ? ev.which : ev.keyCode
-                        if (charCode === 40 || charCode === 37) { // Down/Left arrow
-                            ev.preventDefault();
-                            if (state.lightSensorState.lightLevel === min) {
-                                return
-                            }
-                            state.lightSensorState.lightLevel--;
-                            this.updateLightLevel();
-                        } else if (charCode === 38 || charCode === 39) { // Up/Right arrow
-                            ev.preventDefault();
-                            if (state.lightSensorState.lightLevel === max) {
-                                return;
-                            }
-                            state.lightSensorState.lightLevel++;
+                        const value = commonKeyHandler(ev, state.lightSensorState.lightLevel, min, max);
+                        if (value !== undefined) {
+                            state.lightSensorState.lightLevel = value;
                             this.updateLightLevel();
                         }
                     });
@@ -1509,44 +1461,11 @@ path.sim-board {
                     },
                     // keydown
                     (ev: KeyboardEvent) => {
-                        let charCode = (typeof ev.which == "number") ? ev.which : ev.keyCode
-                        let state = this.board;
-                        let pin = state.edgeConnectorState.pins[index];
-
-                        if ([37, 38, 39, 40].includes(charCode)) {
-                            if (!(pin.mode & PinFlags.Input)) {
-                                ev.preventDefault();
-                                accessibility.setLiveContent(pxsim.localization.lf("This input is read only"));
-                                return;
-                            }
-                            if (pin.mode & PinFlags.Touch) {
-                                // The pin is in touch mode and has button markup, not a slider.
-                                ev.preventDefault();
-                                return;
-                            }
-                        };
-
-                        if (charCode === 40 || charCode === 37) { // Down/Left arrow
-                            ev.preventDefault();
-                            if (pin.mode & PinFlags.Analog) {
-                                pin.value -= 10;
-                                if (pin.value < 0) {
-                                    pin.value = 0;
-                                }
-                            } else {
-                                pin.value = 0;
-                            }
-                            this.updatePin(pin, index);
-                        } else if (charCode === 38 || charCode === 39) { // Up/Right arrow
-                            ev.preventDefault();
-                            if (pin.mode & PinFlags.Analog) {
-                                pin.value += 10;
-                                if (pin.value > 1023) {
-                                    pin.value = 1023;
-                                }
-                            } else {
-                                pin.value = 1;
-                            }
+                        const state = this.board;
+                        const pin = state.edgeConnectorState.pins[index];
+                        const value = pinKeyHandler(ev, pin.value, 0, pin.mode & PinFlags.Analog ? 1023 : 1, pin.mode);
+                        if (value !== undefined) {
+                            pin.value = value;
                             this.updatePin(pin, index);
                         }
                     });
@@ -1705,5 +1624,70 @@ path.sim-board {
         private attachKeyboardEvents() {
             accessibility.postKeyboardEvent();
         }
+    }
+
+    const commonKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number): number | undefined => {
+        const key = e.key;
+        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(key)) {
+            e.preventDefault();
+        }
+        switch(key) {
+            case "ArrowDown":
+            case "ArrowLeft": {
+                if (currentValue === min) {
+                    return undefined;
+                }
+                return currentValue - 1;
+            }
+            case "ArrowUp":
+            case "ArrowLeft": {
+                if (currentValue === max) {
+                    return undefined;
+                }
+                return currentValue + 1;
+            }
+            case "Home": {
+                return min;
+            }
+            case "End": {
+                return max;
+            }
+            case "PageDown": {
+                const range = Math.abs(min) + Math.abs(max);
+                const step = Math.floor(range / 10);
+                const value = currentValue - step;
+                if (value < min) {
+                    return min;
+                }
+                return value;
+            }
+            case "PageUp": {
+                const range = Math.abs(min) + Math.abs(max);
+                const step = Math.floor(range / 10);
+                const value = currentValue + step;
+                if (value > max) {
+                    return max;
+                }
+                return value;
+            }
+        }
+        return undefined;
+    }
+
+    const pinKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number, pinMode: PinFlags): number | undefined => {
+        const key = e.key;
+        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(key)) {
+            if (!(pinMode & PinFlags.Input)) {
+                e.preventDefault();
+                accessibility.setLiveContent(pxsim.localization.lf("This input is read only"));
+                return undefined;
+            }
+            if (pinMode & PinFlags.Touch) {
+                // The pin is in touch mode and has button markup, not a slider.
+                e.preventDefault();
+                return undefined;
+            }
+        }
+        return commonKeyHandler(e, currentValue, min, max);
     }
 }
