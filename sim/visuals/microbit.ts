@@ -831,6 +831,7 @@ path.sim-board {
                 this.antenna.style.visibility = "visible";
                 this.antennaInitialized = true;
                 const antennaWidth = ANTENNA_WAVE_PERIOD_X * ANTENNA_WAVE_COUNT;
+                const defaultValue = -75;
                 const valueMin = -128;
                 const valueMax = -42;
                 const setValue = (val: number) => {
@@ -847,7 +848,7 @@ path.sim-board {
                 };
 
                 const keyboardEventHandler = (ev: KeyboardEvent) => {
-                    const value = commonKeyHandler(ev, this.board.radioState.datagram.rssi, valueMin, valueMax);
+                    const value = commonKeyHandler(ev, this.board.radioState.datagram.rssi ?? defaultValue, valueMin, valueMax);
                     if (value !== undefined) {
                         setValue(value);
                     }
@@ -862,7 +863,7 @@ path.sim-board {
                 this.antenna.setAttribute("aria-valuemin", `${valueMin}`);
                 this.antenna.setAttribute("aria-valuemax", `${valueMax}`);
                 this.antenna.setAttribute("aria-orientation", "horizontal");
-                this.antenna.setAttribute("aria-valuenow", (this.board.radioState.datagram.rssi ?? -75).toString());
+                this.antenna.setAttribute("aria-valuenow", (this.board.radioState.datagram.rssi ?? defaultValue).toString());
             }
             let now = Date.now();
             if (now - this.lastAntennaFlash > 200) {
@@ -1638,17 +1639,11 @@ path.sim-board {
         switch(key) {
             case "ArrowDown":
             case "ArrowLeft": {
-                if (currentValue === min) {
-                    return undefined;
-                }
-                return currentValue - 1;
+                return Math.max(min, currentValue - 1)
             }
             case "ArrowUp":
-            case "ArrowLeft": {
-                if (currentValue === max) {
-                    return undefined;
-                }
-                return currentValue + 1;
+            case "ArrowRight": {
+                return Math.min(max, currentValue + 1)
             }
             case "Home": {
                 return min;
@@ -1660,19 +1655,13 @@ path.sim-board {
                 const range = Math.abs(min) + Math.abs(max);
                 const step = Math.floor(range / 10);
                 const value = currentValue - step;
-                if (value < min) {
-                    return min;
-                }
-                return value;
+                return Math.max(min, value)
             }
             case "PageUp": {
                 const range = Math.abs(min) + Math.abs(max);
                 const step = Math.floor(range / 10);
                 const value = currentValue + step;
-                if (value > max) {
-                    return max;
-                }
-                return value;
+                return Math.min(max, value)
             }
         }
         return undefined;
