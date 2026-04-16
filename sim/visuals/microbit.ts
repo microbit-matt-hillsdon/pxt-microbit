@@ -1626,9 +1626,13 @@ path.sim-board {
         }
     }
 
+    const isHandledKey = (key: string) => {
+        return ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(key);
+    }
+
     const commonKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number): number | undefined => {
         const key = e.key;
-        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(key)) {
+        if (isHandledKey(key)) {
             e.preventDefault();
         }
         switch(key) {
@@ -1676,7 +1680,7 @@ path.sim-board {
 
     const pinKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number, pinMode: PinFlags): number | undefined => {
         const key = e.key;
-        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(key)) {
+        if (isHandledKey(key)) {
             if (!(pinMode & PinFlags.Input)) {
                 e.preventDefault();
                 accessibility.setLiveContent(pxsim.localization.lf("This input is read only"));
