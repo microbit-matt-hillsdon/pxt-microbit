@@ -1631,6 +1631,12 @@ path.sim-board {
         return ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End"].includes(key);
     }
 
+    const getSliderStepValue = (min: number, max: number) => {
+        const range = max - min;
+        // Assumes slider values are always integers.
+        return Math.max(1, Math.floor(range / 10));
+    }
+
     const commonKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number): number | undefined => {
         const key = e.key;
         if (isHandledKey(key)) {
@@ -1652,14 +1658,12 @@ path.sim-board {
                 return max;
             }
             case "PageDown": {
-                const range = Math.abs(min) + Math.abs(max);
-                const step = Math.floor(range / 10);
+                const step = getSliderStepValue(min, max);
                 const value = currentValue - step;
                 return Math.max(min, value)
             }
             case "PageUp": {
-                const range = Math.abs(min) + Math.abs(max);
-                const step = Math.floor(range / 10);
+                const step = getSliderStepValue(min, max);
                 const value = currentValue + step;
                 return Math.min(max, value)
             }
