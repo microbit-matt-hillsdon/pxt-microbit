@@ -35,6 +35,8 @@ namespace pxsim {
 
         // board hardware version
         hardwareVersion = 1;
+        // when set (e.g. ?variant=mbdal), the sim stays V1 and ignores V2 upgrade signals
+        pinHardwareVersion = false;
 
         constructor() {
             super()
@@ -126,6 +128,7 @@ namespace pxsim {
         }
 
         ensureHardwareVersion(version: number) {
+            if (this.pinHardwareVersion) return;
             if (version > this.hardwareVersion) {
                 this.hardwareVersion = version;
                 this.updateView();
@@ -141,6 +144,9 @@ namespace pxsim {
             const cmpDefs = msg.partDefinitions || {};
             const fnArgs = msg.fnArgs;
 
+            // A forced mbdal skin pins the sim to V1 so later V2 signals can't upgrade it.
+            if (msg.theme === "mbdal") this.pinHardwareVersion = true;
+
             const v2Parts: pxt.Map<boolean> = {
                 "microphone": true,
                 "logotouch": true,
@@ -148,7 +154,7 @@ namespace pxsim {
                 "flashlog": true,
                 "v2": true
             };
-            if (msg.builtinParts) {
+            if (msg.builtinParts && !this.pinHardwareVersion) {
                 const v2PartsUsed = msg.builtinParts.filter(k => v2Parts[k])
                 if (v2PartsUsed.length) {
                     console.log(`detected v2 feature`, v2PartsUsed);

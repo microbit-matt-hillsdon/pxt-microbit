@@ -195,6 +195,9 @@
                 "flashUsableEnd": 471040,
                 "flashEnd": 524288
             },
+            "runtime": {
+                "variantGroups": ["micro:bit (V2)"]
+            },
             "compileService": {
                 "buildEngine": "codal",
                 "codalTarget": {
