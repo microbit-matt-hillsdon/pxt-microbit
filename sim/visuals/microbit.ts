@@ -1536,9 +1536,7 @@ path.sim-board {
                         let svgpin = this.pins[index];
                         if (pin.mode & PinFlags.Input && !(pin.mode & PinFlags.Touch)) {
                             let cursor = svg.cursorPoint(pt, this.element, ev);
-                            let maxValue = pin.mode & PinFlags.Analog ? 1023 : 1;
-                            let v = (400 - cursor.y) / 40 * maxValue;
-                            pin.value = Math.max(0, Math.min(maxValue, Math.floor(v)));
+                            pin.value = pinValueFromCursorY(cursor.y, pin.mode);
                         }
                         this.updatePin(pin, index);
                     },
@@ -1550,9 +1548,7 @@ path.sim-board {
                         U.addClass(svgpin, "touched");
                         if (pin.mode & PinFlags.Input && !(pin.mode & PinFlags.Touch)) {
                             let cursor = svg.cursorPoint(pt, this.element, ev);
-                            let maxValue = pin.mode & PinFlags.Analog ? 1023 : 1;
-                            let v = (400 - cursor.y) / 40 * maxValue;
-                            pin.value = Math.max(0, Math.min(maxValue, Math.floor(v)));
+                            pin.value = pinValueFromCursorY(cursor.y, pin.mode);
                         }
                         this.updatePin(pin, index);
                     },
@@ -1779,6 +1775,14 @@ path.sim-board {
             }
         }
         return undefined;
+    }
+
+    const pinValueFromCursorY = (y: number, pinMode: PinFlags): number => {
+        const fraction = (400 - y) / 40;
+        const v = Math.max(0, Math.min(1023, Math.floor(fraction * 1023)));
+        if (pinMode & PinFlags.Analog) return v;
+        // Most of the pin sets a digital pin high; a strip at the bottom sets it low.
+        return v > 100 ? 1 : 0;
     }
 
     const pinKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number, pinMode: PinFlags): number | undefined => {
