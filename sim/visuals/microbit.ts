@@ -1536,9 +1536,7 @@ path.sim-board {
                         let svgpin = this.pins[index];
                         if (pin.mode & PinFlags.Input && !(pin.mode & PinFlags.Touch)) {
                             let cursor = svg.cursorPoint(pt, this.element, ev);
-                            let maxValue = pin.mode & PinFlags.Analog ? 1023 : 1;
-                            let v = (400 - cursor.y) / 40 * maxValue;
-                            pin.value = Math.max(0, Math.min(maxValue, Math.floor(v)));
+                            pin.value = pinValueFromCursorY(cursor.y, pin.mode);
                         }
                         this.updatePin(pin, index);
                     },
@@ -1550,9 +1548,7 @@ path.sim-board {
                         U.addClass(svgpin, "touched");
                         if (pin.mode & PinFlags.Input && !(pin.mode & PinFlags.Touch)) {
                             let cursor = svg.cursorPoint(pt, this.element, ev);
-                            let maxValue = pin.mode & PinFlags.Analog ? 1023 : 1;
-                            let v = (400 - cursor.y) / 40 * maxValue;
-                            pin.value = Math.max(0, Math.min(maxValue, Math.floor(v)));
+                            pin.value = pinValueFromCursorY(cursor.y, pin.mode);
                         }
                         this.updatePin(pin, index);
                     },
@@ -1779,6 +1775,16 @@ path.sim-board {
             }
         }
         return undefined;
+    }
+
+    const pinValueFromCursorY = (y: number, pinMode: PinFlags): number => {
+        if (pinMode & PinFlags.Digital) {
+            // Splits the small pins in half. The large pins' holes sit above this line,
+            // so it also splits the solid area below each hole roughly in half.
+            return y < 382 ? 1 : 0;
+        }
+        const fraction = (400 - y) / 40;
+        return Math.max(0, Math.min(1023, Math.floor(fraction * 1023)));
     }
 
     const pinKeyHandler = (e: KeyboardEvent, currentValue: number, min: number, max: number, pinMode: PinFlags): number | undefined => {
